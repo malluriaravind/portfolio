@@ -172,6 +172,47 @@
 			<img src="images/facemask-13.PNG">
 		</div>
 		<p>We convert Max pooling layered data of an image one long vector so that corresponding data can be easily read by the neural network by using flattening layer. Feeding the data as long vector to the neural network. Some of the artificial neural networks have dense layer as last layer which expects data in one-dimension. Last layer of CNN is classifier which is also known as dense layer, this is artificial neural network classifier, ANN classifier requires individual features just like any other classifiers, It needs feature vector Hence we need to convert the output of the convolution part or max-pooling part of CNN into a one dimensional feature vector, so it can be used by ANN. </p>
+		<div class="img-container">
+			<img src="images/facemask-14.PNG">
+		</div>
+		<p>Now we can these numbers from feature map from row by row in the max-pool feature map and create a long vector out of those by putting one after another in sequential manner. This feature vector now can be given as input to the dense layer of ANN part which can be used for final classification.</p>
+		<h5>HOW TO OVERCOME OVERFITTING IN NEURAL NETWORK?</h5>
+		<p>Over fitting in neural networks occurs when it gets tuned on training data such that it does not perform well on test data. We can use dropout layer to avoid overfitting. Dropout layer drops out random set of neurons or activation setting up to zero. Overfitting can be resolve in two ways: 1. Providing a lot of training to CNN model. 2. Incorporating dropout layer in CNN model</p>
+		<h5>FULLY CONNECTED LAYER</h5>
+		<div class="img-container">
+			<img src="images/facemask-15.PNG">
+		</div>
+		<p>The flattened feature map is then passed through artificial neural network so in the image we can see it’s like adding ANN to the convolutional neural network. Here the ANN is made up of input layer, fully connected layer and output layer. The fully connected layer is similar to hidden layers in ANN. Here the output is where we can get the predicted classes. The fully connected layer combines the features into attributes that better predict the output classes.</p>
+		<div class="img-container">
+			<img src="images/facemask-16.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-17.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-18.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-19.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-20.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-21.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-22.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-23.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-24.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/facemask-25.PNG">
+		</div>
 		</div>
 
 </body>
