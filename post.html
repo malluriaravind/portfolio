@@ -133,8 +133,46 @@
 		<div class="img-container">
 			<img src="images/facemask-5.PNG">
 		</div>
-
-	</div>
+		<h5>HOW COMPUTER READS THE IMAGE?</h5>
+		<p>Consider if we have two images, one is black and white of 2*2 pixels and another one is 2*2 px of coloured image. Black and white image in convolutional neural networks is referred as 2D or 2-dimensional array. Coloured image is referred ad 3-d image. Each of the pixel in black and white image is 8-bit information. Every pixel having value ranging between 0-255. Here, 0-255 is intensity of colour where 255 is completely white pixel and 0 is completely black pixel and between we have grayscale of colours.</p>
+		<p>Computers read this information to process the image. Every image is representation of 1’s and 0’s forming numbers 0 to 255 for each pixel. colour images is made up of 3 colours red, blue, green (RGB), so basically three layers so each of red, green and blue. So each of these colours have their own colour intensity, each having value ranging between 0-255. Computers combine these separate colours to find out the colour of the image. </p>
+		<div class="img-container">
+			<img src="images/facemask-7.PNG">
+		</div>
+		<h5>CONVOLUTION LAYER</h5>
+		<p>Convolutional neural networks get trained on these images to recognize patterns and classify the image in the object accordingly. The name for detecting the patterns in the CNN model is Feature detector or kernel or filter. CNN use of the feature detector to detect the significant feature of the image data in order to provide predictions. Feature detector is simply a small matrix of weights</p>
+		<div class="img-container">
+			<img src="images/facemask-8.PNG">
+		</div>
+		<p>Now we have 2-D training image input on the left hand side and also feature detector on right hand side which is 3*3 matrix. It can be 5*5 or 7*7 matrix as well. But the most commonly used matrix is 3*3. The convolution operation is denoted by x in the circle. In order to do the convolution operation we want to put the feature detector on the input image and then we want to perform element wise multiplication of 9 pixel feature detector with the part of input which is currently on and then summing up the result in to a single output pixel. We are moving the whole feature detector on input image is called stride. Here we are performing the stride of 1px and we have a stride of 2 or 3px based on our requirement. By doing this we convert 2-d matrix of features in to another 2-d matrix of features of reduced size of that image. By doing this the shape of input image is modified by the feature detector. there by detecting the particular feature from the input image and get the result having information about that feature. That is called the feature map</p>
+		<div class="img-container">
+			<img src="images/facemask-9.PNG">
+		</div>
+		<h5>HOW WE CAN CONVOLUTION OPERATION FOR COLOURED IMAGES?</h5>
+		<div class="img-container">
+			<img src="images/facemask-10.PNG">
+		</div>
+		<p>Coloured image is referred as 3d-image. It contains the 3 channels RGB, Now here we want to perform feature detector having the size 3*3*3 and this feature detector should contains the 3 channels and perform multiplication on input image values and summing the result in to a single output pixel value and move the feature detector with help of stride value. After doing all the operations we can detect the particular features of an image.</p>
+		<h5>Rectified Linear Unit (Relu layer):</h5>
+		<p>Relu transform function only activates the node if the input is above certain quantity, while the input is below zero, the output is zero, but when the input rises above a certain threshold, it has linear relationship with dependent variable. In this layer we remove every negative values from the filtered images and replace it with zero. This is done to avoid the values summing up to zero.</p>
+		<div class="img-container">
+			<img src="images/facemask-11.PNG">
+		</div>
+		<h5>MAX POOLING LAYER</h5>
+		<p>If we want our CNN model to recognize the object in an image correctly even the objects tilted, distorted, different light composition, textures etc; for that case max pooling layer is introduced. CNN model possess the property called spatial invariance which gives CNN flexibility to recognize an image features even if in object in the image has different lighting, orientation, distortion, background colour etc; Max pooling is also referred as sub-sampling or down-sampling layer</p>
+		<div class="img-container">
+			<img src="images/facemask-12.PNG">
+		</div>
+		<p>1. Pick a window size(usually 2 or 3)</p>
+		<p>2. Pick a stride(Usually 2)</p>
+		<p>3. Walk your window across your filtered images.</p>
+		<p>4. For each window take the maximum value.</p>
+		<p>By applying max-pooling we are reducing the dimensionality of each feature map there by getting rid of features. Reduction helps in size of faster processing during model training.</p>
+		<div class="img-container">
+			<img src="images/facemask-13.PNG">
+		</div>
+		<p>We convert Max pooling layered data of an image one long vector so that corresponding data can be easily read by the neural network by using flattening layer. Feeding the data as long vector to the neural network. Some of the artificial neural networks have dense layer as last layer which expects data in one-dimension. Last layer of CNN is classifier which is also known as dense layer, this is artificial neural network classifier, ANN classifier requires individual features just like any other classifiers, It needs feature vector Hence we need to convert the output of the convolution part or max-pooling part of CNN into a one dimensional feature vector, so it can be used by ANN. </p>
+		</div>
 
 </body>
 </html>
