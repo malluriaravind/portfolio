@@ -142,5 +142,36 @@ Now that we understand the importance of recommender systems, let’s have a loo
 		</div>
 		<p>Once we obtain the U and M matrices, based on the non-empty cells in the user-movie interaction matrix, we perform the product of U and M and predict the values of non-empty cells in the user-movie interaction matrix.
 			To implement matrix factorization, we use a simple Python library named Surprise, which is for building and testing recommender systems. The data frame is converted into a train set, a format of data set to be accepted by the Surprise library.</p>
-</body>
+		<div class="img-container">
+			<img src="images/movie-10.PNG">
+		</div>
+		<p>Now the model is ready. We’ll store these predictions to pass to the final model as an additional feature. This will help us incorporate collaborative filtering into our system.
+		</p>
+		<div class="img-container">
+			<img src="images/movie-11.PNG">
+		</div>
+		<p>Let’s convert the data in the data frame format into a user-movie interaction matrix. Matrices used in this type of problem are generally sparse because there’s a high chance users may only rate a few movies.
+			The advantages of the sparse matrix format of data, also called CSR format, are as follows:
+			efficient arithmetic operations: CSR + CSR, CSR * CSR, etc.
+			efficient row slicing
+			fast matrix-vector products
+			scipy.sparse.csr_matrix is a utility function that efficiently converts the data frame into a sparse matrix.</p>
+		<div class="img-container">
+			<img src="images/movie-12.PNG">
+		</div>
+		<p>‘train_sparse_matrix’ is the sparse matrix representation of the train_data data frame.
+			We’ll create 3 sets of features using this sparse matrix:
+			Features which represent global averages
+			Features which represent the top five similar users
+			Features which represent the top five similar movies</p>
+		<h6>1. Features which represent the global averages
+		</h6>
+		<p>The three global averages we’ll employ are:
+			The average ratings of all movies given by all users
+			The average ratings of a particular movie given by all users
+			The average ratings of all movies given by a particular user</p>
+		<div class="img-container">
+			<img src="images/movie-13.PNG">
+		</div>
+	</body>
 </html>
