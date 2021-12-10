@@ -191,5 +191,19 @@ Now that we understand the importance of recommender systems, let’s have a loo
 		<div class="img-container">
 			<img src="images/movie-16.PNG">
 		</div>
+		<h6>Step 3: Creating a final model for our movie recommendation system
+		</h6>
+		<p>To create our final model, let’s use XGBoost, an optimized distributed gradient boosting library.
+		</p>
+		<div class="img-container">
+			<img src="images/movie-17.PNG">
+		</div>
+		<p>Performance Metrics
+			There are two main ways to evaluate a recommender system’s performance: Root Mean Squared Error (RMSE) and Mean Absolute Percentage Error (MAPE). RMSE measures the squared loss, while MAPE measures the absolute loss. Lower values mean lower error rates and thus better performance.</p>
+		<div class="img-container">
+			<img src="images/movie-18.PNG">
+		</div>
+		<p>Our model resulted in 0.67 RMSE, and 19.86 MAPE on the unseen test data, which is a good-to-go model. An RMSE value of less than 2 is considered good, and a MAPE less than 25 is excellent. That said, this model can be further enhanced by adding features that would be recommended based on the top picks dependent on location or genre. We could also test the efficacy of our various models in real-time through A/B testing.
+		</p>
 	</body>
 </html>
