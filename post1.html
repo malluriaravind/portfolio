@@ -150,17 +150,17 @@
 		vote_count - the count of votes recieved.
 		<br>
 		<br>
-		<h6>Sample ID Form</h5>
+		<h5>Content Based Filtering</h5>
+		<p>In this recommender system the content of the movie (overview, cast, crew, keyword, tagline etc) is used to find its similarity with other movies. Then the movies that are most likely to be similar are recommended.</p>
 		<div class="img-container">
-			<img src="images/sample-form.jpg">
+			<img src="images/content.PNG">
 		</div>
-
-		<h5>Results Input Fields</h5>
+		<h6>Plot description based Recommender</h6>
+		<p>We will compute pairwise similarity scores for all movies based on their plot descriptions and recommend movies based on that similarity score. The plot description is given in the overview feature of our dataset. Let's take a look at the data. ..</p>
 		<div class="img-container">
-			<img src="images/results.jpg">
+			<img src="images/movie-1.PNG">
 		</div>
-
-		<h5>PDF Report (Automaticly Generated)</h5>
+		<p>For any of you who has done even a bit of text processing before knows we need to convert the word vector of each overview. Now we'll compute Term Frequency-Inverse Document Frequency (TF-IDF) vectors for each overview. Now if you are wondering what is term frequency , it is the relative frequency of a word in a document and is given as (term instances/total instances). Inverse Document Frequency is the relative count of documents containing the term is given as log(number of documents/documents with term) The overall importance of each word to the documents in which they appear is equal to TF * IDF.This will give you a matrix where each column represents a word in the overview vocabulary (all the words that appear in at least one document) and each row represents a movie, as before.This is done to reduce the importance of words that occur frequently in plot overviews and therefore, their significance in computing the final similarity score. Fortunately, scikit-learn gives you a built-in TfIdfVectorizer class that produces the TF-IDF matrix in a couple of lines. That's great, isn't it?</p>
 		<div class="img-container">
 			<img src="images/pdf-report.jpg">
 		</div>
