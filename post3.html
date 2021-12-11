@@ -47,91 +47,74 @@
 		<br>
 
 		<div class="img-container">
-			<img src="images/docker.png">
+			<img src="images/class-based1.PNG">
 		</div>
 		
-		<h3>Static Portfolio  to Django Website</h3>
-		<p>Docker is a set of platform as a service products that use OS-level virtualisation to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels. All containers are run by a single operating-system kernel and are thus more lightweight than virtual machines.[8]
+		<h3>What are Django class based views & should you use them?
+		</h3>
+		<p>Function based views are a little more explicit and easier to understand while class based views require a little more understanding of how to use these classes and built in methods.
 		</p>
-		<h6>What is Container?</h6>
-		<p>Docker Container is a standardised unit which can be created on the fly to deploy a particular application or environment. It could be an Ubuntu container, CentOs container, etc. to full-fill the requirement from an operating system point of view. Also, it could be an application oriented container like CakePHP container or a Tomcat-Ubuntu container etc.
+		<p>Now with that being said, class based views are very powerful and I think every django developer should learn how to use them at some point, especially if you plan on applying for a job where Django is used. There’s a good chance any place you apply will expect you to know how to work with class based views. 
 		</p>
-		<h6>Docker Concepts</h6>
-		<p>Docker is a platform for developers and sysadmins to build, share, and run applications with containers. The use of containers to deploy applications is called containerisation. Containers are not new, but their use for easily deploying applications is.</p>
-		<p>Containerisation is increasingly popular because containers are:
+		<p>In this article I want to break down what class based views are, why and how you should use them, along with some examples and comparisons to function based views.
 		</p>
-		<p>Flexible: Even the most complex applications can be containerised.
-		</p>
-		<p>Lightweight: Containers leverage and share the host kernel, making them much more efficient in terms of system resources than virtual machines.
-		</p>
-		<p>Portable: You can build locally, deploy to the cloud, and run anywhere.
-		</p>
-		<p>Loosely coupled: Containers are highly self sufficient and encapsulated, allowing you to replace or upgrade one without disrupting others.
-		</p>
-		<p>Scalable: You can increase and automatically distribute container replicas across a datacenter.
-		</p>
-		<p>Secure: Containers apply aggressive constraints and isolations to processes without any configuration required on the part of the user.
-		</p>
-		<h6>Images and containers
+		<h6>So what are class based views?
 		</h6>
-		<p>Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own, private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application — the code or binary, runtimes, dependencies, and any other filesystem objects required.
+		<p>In short, class based views are simply django views written as python classes. At the end of the day all views are just functions but by using classes we are able to extend our code by utilizing the following:
 		</p>
-		<h6>Containers and virtual machines
+		<p>1. Inheritance so we can write reusable code and make our application more DRY. (Don't Repeat Yourself)
+		</p>
+		<p>2. Built in methods and views to eliminate redundancy for common use cases
+		</p>
+		<p>3. separate our code by http method types such as GET and POST. 
+		</p>
+		<h6>Django didn't always have class based views
 		</h6>
-		<p>A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
-			By contrast, a virtual machine (VM) runs a full-blown “guest” operating system with virtual access to host resources through a hypervisor. In general, VMs incur a lot of overhead beyond what is being consumed by your application logic.</p>
-		<p>Why do we use docker?
+		<p>There was a point where django only had function based views. There were methods added to take care of common actions but extending functions can be very limiting so to fix this problem django added class based views.
 		</p>
-		<p>Docker provides us with containers. And containerization consists of an entire runtime environment, an application, all its dependencies, libraries, binaries and configuration files needed to run it, bundled into one package. Each application runs separately from the other. Docker solves the dependency problem by keeping the dependency contained inside the containers. It unites developers against dependency of their project.
+		<h6>Ex: Class based view
+		</h6>
+		<div class="img-container">
+			<img src="images/class-based2.PNG">
+		</div>
+		<div class="img-container">
+			<img src="images/class-based3.PNG">
+		</div>
+		<h6>The as_view() method
+		</h6>
+		<p>Because we are using a class based view, we need to add the “as_view” method for our url resolver. This is because the django url resolver cannot process a class but instead needs a function. To resolve this, we trigger the “as view” method from our “View” class which we inherited from and the “as view” method will call the correct view function depending on the method sent, therefore giving the url resolver a function.
 		</p>
-		<p>Benefits of using Containers over Virtual Machines
+		<p>As you can see in this example the class based view is much simpler to write and takes care of the magic under the hood, which we cannot see at the moment. This is a very simplistic example but it already demonstrates some powers of the class based view.
 		</p>
-		<p>Unlike VMs( Virtual Machines ) that run on a Guest OS, using a hypervisor, Docker containers run directly on a host server (for Linux), using a Docker engine, making it faster and lightweight.
+		<p>In this case we inherited from a built in view called ListView which at a minimum just needed a model name or a queryset. The view already knows which template to render, and how to pass in the data into the template. With a function based view we have to take care of each step by first querying the database, passing in our context data and then rendering our template.
 		</p>
-		<p>Docker containers can be easily integrated compared to VMs.
+		<h6>Understand exactly how they work before using them..
+		</h6>
+		<p>This is actually where my issue with class based views for beginners comes in. There is a lot of power in using class based views but you should try to understand exactly how they work before using them. In most cases you will need a lot more customization then what we see here and that's where function based views thrive in the beginning. They are explicit and easy to understand, no magic underneath the hood.
 		</p>
-		<p>With a fully virtualized system, you get more isolation. However, it requires more resources. With Docker, you get less isolation. However, as it requires fewer resources, you can run thousands of container on a host.
+		<p>Separating code by http methods
 		</p>
-		<p>A VM can take a minimum of one minute to start, while a Docker container usually starts in a fraction of seconds.
+		<p>In this next example I want to demonstrate how class based views take care of http methods by passing in a post request onto the same view.
 		</p>
-		<p>Containers are easier to break out of than a Virtual Machine.
+		<div class="img-container">
+			<img src="images/class-based4.PNG">
+		</div>
+		<p>If you take a look at the two methods you can see that the function based view takes in every http method type, this means if we are sending “post” data then we have to check the request type ourselves to process it correctly.
+
+			With class based views we have a function for different methods. So if we send a GET request, then the “get” function gets triggered and any logic we have in there gets processed. If we send a “post” request then that request is sent to the “post” function for processing. This makes for much cleaner code by separating our request. </p>
+		<h6>Class based views make our code clean and reusable
+		</h6>
+		<p>So to summarize what class based views are, they are a way to write cleaner and reusable code using python classes. We’ll get into a few more examples and also cover some of the class based views django already has built in for us but first let’s answer a few more questions.
 		</p>
-		<p>Unlike VMs there is no need to preallocate the RAM. Hence docker containers utilize less RAM compared to VMs. So only the amount of RAM that is required is used.
+		<h6>Do class based views replace function based views?
+		</h6>
+		<p>No, class based views are simply another way of writing views, they are not meant to be a replacement. You can use them together in the same application as you see fit. In fact there are some cases where you may have most of your application written using classes but where a function based view may make more sense for a particular task.
 		</p>
-		<p>Install Docker Desktop
+		<h6>Should I be using class based views instead of function based views?
+		</h6>
+		<p>In short the answer is that it's 100% up to you. If you want to write the most efficient and clean code then in theory class based views is what you should be using. The only problem with that statement is that not everyone is at the same level so you can actually slow down your progress by trying to force class based views into your application, therefore writing less efficient code. 
 		</p>
-		<p>The best way to get started developing containerized applications is with Docker Desktop, for OSX or Windows. Docker Desktop will allow you to easily set up Kubernetes or Swarm on your local development machine, so you can use all the features of the orchestrator you’re developing applications for right away, no cluster required. Follow the installation instructions appropriate for your operating system:
-		</p>
-		<p>1. docker –version - This command is used to get the currently installed version of docker
-		</p>
-		<p>2. docker pull - This command is used to pull images from the docker repository(hub.docker.com)
-		</p>
-		<p>3. docker run - This command is used to create a container from an image
-		</p>
-		<p>4. docker ps - This command is used to list the running containers
-		</p>
-		<p>5. docker ps -a - This command is used to show all the running and exited containers
-		</p>
-		<p>6. docker exec - This command is used to access the running container
-		</p>
-		<p>7. docker stop - This command stops a running container
-		</p>
-		<p>8. docker kill - This command kills the container by stopping its execution immediately. The difference between ‘docker kill’ and ‘docker stop’ is that ‘docker stop’ gives the container time to shutdown gracefully, in situations when it is taking too much time for getting the container to stop, one can opt to kill it
-		</p>
-		<p>9. docker commit - This command creates a new image of an edited container on the local system
-		</p>
-		<p>10. docker login - This command is used to login to the docker hub repository
-		</p>
-		<p>11. docker push - This command is used to push an image to the docker hub repository
-		</p>
-		<p>12. docker images - This command lists all the locally stored docker images
-		</p>
-		<p>13. docker rm - This command is used to delete a stopped container
-		</p>
-		<p>14. docker rmi - This command is used to delete an image from local storage
-		</p>
-		<p>15. docker build - This command is used to build an image from a specified docker file
-		</p>
+		
 	</div>
 
 </body>
